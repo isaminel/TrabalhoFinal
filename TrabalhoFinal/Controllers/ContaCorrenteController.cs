@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TrabalhoFinal.Models;
 
 namespace TrabalhoFinal.Controllers
 {
@@ -11,7 +12,14 @@ namespace TrabalhoFinal.Controllers
         // GET: ContaCorrente
         public ActionResult Index()
         {
-            return View();
+            var contaCorrente = new ContaCorrente
+            {
+                Agencia = "",
+                Titular = "",
+                NrConta = 1
+            };
+
+            return View(contaCorrente);
         }
     }
 }

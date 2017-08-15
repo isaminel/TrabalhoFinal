@@ -7,7 +7,8 @@ namespace TrabalhoFinal.Models
 {
     public class Gerente
     {
-        public string Titular { get; set; }
+        public int Id { get; set; }
+        public string Nome { get; set; }
         public string Cpf { get; set; }
     }
 }

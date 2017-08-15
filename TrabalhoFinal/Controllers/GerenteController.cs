@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TrabalhoFinal.Models;
 
 namespace TrabalhoFinal.Controllers
 {
@@ -11,7 +12,13 @@ namespace TrabalhoFinal.Controllers
         // GET: Gerente
         public ActionResult Index()
         {
-            return View();
+            var gerente = new Gerente
+            {
+                Nome = "",
+                Cpf = ""
+            };
+
+            return View(gerente);
         }
     }
 }
