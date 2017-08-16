@@ -12,11 +12,11 @@ namespace TrabalhoFinal.Controllers
         // GET: ContaCorrente
         public ActionResult Index()
         {
-            var contaCorrente = new ContaCorrente
+            var contaCorrente = new ContaCorrente()
             {
-                Agencia = "",
-                Titular = "",
-                NrConta = 1
+                Agencia = "Bradesco",
+                Titular = "Ana",
+                NrConta = 5555
             };
 
             return View(contaCorrente);

@@ -12,10 +12,10 @@ namespace TrabalhoFinal.Controllers
         // GET: Cliente
         public ActionResult Index()
         {
-            var cliente = new Cliente
+            var cliente = new Cliente()
             {
-                Nome = "",
-                Cpf = ""
+                Nome = "José",
+                Cpf = "784.659.999-89"
             };
 
             return View(cliente);

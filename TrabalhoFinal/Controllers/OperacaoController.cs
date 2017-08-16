@@ -12,11 +12,11 @@ namespace TrabalhoFinal.Controllers
         // GET: Operacao
         public ActionResult Index()
         {
-            var operacao = new Operacao
+            var operacao = new Operacao()
             {
-                NomeOperacao = "",
-                Valor = 1,
-                NrContaDestino = 1
+                NomeOperacao = "Sacar",
+                Valor = 100,
+                NrContaDestino = 123
 
 
             };
