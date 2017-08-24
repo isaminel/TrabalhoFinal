@@ -1,11 +1,26 @@
-﻿@model TrabalhoFinal.Models.Operacao
+﻿@model TrabalhoFinal.ViewModels.OperacaoIndexViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>""</h1>
+<h2>Operações</h2>
 
-<h3>Operação: @Model.NomeOperacao</h3>
-<h3>Valor: @Model.Valor</h3>
-<h3>Número da conta destino: @Model.NrContaDestino</h3>
+@if (@Model.Operacoes.Count > 0)
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr><th>Operações</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var operacao in Model.Operacoes)
+            {
+                <tr><td>@Html.ActionLink(@operacao.NomeOperacao, "Details", new { operacao.Id })</td></tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>We don't have any operações yet.</p>
+}

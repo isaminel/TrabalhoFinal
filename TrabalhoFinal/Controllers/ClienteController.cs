@@ -4,21 +4,41 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TrabalhoFinal.Models;
+using TrabalhoFinal.ViewModels;
 
 namespace TrabalhoFinal.Controllers
 {
     public class ClienteController : Controller
     {
-        // GET: Cliente
+
+        public List<Cliente> Clientes = new List<Cliente>
+        {
+            new Cliente {Nome = "John Smith", Id = 1, Cpf = "154.987.885-69"},
+            new Cliente {Nome = "Mary Williams", Id = 2, Cpf = "544.001.878-31"}
+        };
+
+        // GET: Customers
         public ActionResult Index()
         {
-            var cliente = new Cliente()
+            var viewModel = new ClienteIndexViewModel
             {
-                Nome = "José",
-                Cpf = "784.659.999-89"
+                Clientes = Clientes
             };
+
+            return View(viewModel);
+        }
+
+        public ActionResult Details(int id)
+        {
+            if (Clientes.Count < id)
+            {
+                return HttpNotFound();
+            }
+
+            var cliente = Clientes[id - 1];
 
             return View(cliente);
         }
+
     }
 }

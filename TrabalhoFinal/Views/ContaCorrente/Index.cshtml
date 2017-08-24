@@ -1,13 +1,28 @@
-﻿@model TrabalhoFinal.Models.ContaCorrente
+﻿@model TrabalhoFinal.ViewModels.ContaCorrenteIndexViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>""</h1>
+<h2>Contas Corrente</h2>
 
-<h3>Número da conta: @Model.NrConta</h3>
-<h3>Agência: @Model.Agencia</h3>
-<h3>Titular: @Model.Titular</h3
+@if (@Model.ContasCorrente.Count > 0)
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr><th>Cliente</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var conta in Model.ContasCorrente)
+            {
+                <tr><td>@Html.ActionLink(@conta.Titular, "Details", new { conta.Id })</td></tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>We don't have any contas yet.</p>
+}
 
 
