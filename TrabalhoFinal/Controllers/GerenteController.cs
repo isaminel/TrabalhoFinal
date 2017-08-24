@@ -12,8 +12,8 @@ namespace TrabalhoFinal.Controllers
     {
         public List<Gerente> Gerentes = new List<Gerente>
         {
-            new Gerente {Nome = "Lucas", Id = 3, Cpf = "757.998.965-10"},
-            new Gerente {Nome = "Julia", Id = 4, Cpf = "665.989.778-85"}
+            new Gerente {Nome = "Anderson Frare", Id = 3, Cpf = "757.998.965-10"},
+            new Gerente {Nome = "Thiago Zils", Id = 4, Cpf = "665.989.778-85"}
         };
 
         // GET: Customers
