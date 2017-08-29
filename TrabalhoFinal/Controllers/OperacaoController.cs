@@ -13,7 +13,7 @@ namespace TrabalhoFinal.Controllers
         public List<Operacao> Operacoes = new List<Operacao>
         {
             new Operacao {NomeOperacao = "Sacar", Id = 6, Valor = 500, NrContaDestino = 147854},
-            new Operacao {NomeOperacao = "Depositar", Id = 6, Valor = 1000, NrContaDestino = 36633}
+            new Operacao {NomeOperacao = "Depositar", Id = 7, Valor = 1000, NrContaDestino = 36633}
         };
 
         // GET: Customers
