@@ -20,10 +20,16 @@ namespace TrabalhoFinal.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<ContaCorrente> ContasCorrente { get; set; }
+        public DbSet<Gerente> Gerentes { get; set; }
+        public DbSet<Operacao> Operacoes { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-        }
+        }      
 
         public static ApplicationDbContext Create()
         {

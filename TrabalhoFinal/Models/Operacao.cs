@@ -11,5 +11,10 @@ namespace TrabalhoFinal.Models
         public string NomeOperacao { get; set; }
         public double Valor { get; set; }
         public int NrContaDestino { get; set; }
+
+        public bool IsSubscribedToNewsletter { get; set; }
+
+        public MembershipType MembershipType { get; set; }
+        public byte MembershipTypeId { get; set; }
     }
 }
