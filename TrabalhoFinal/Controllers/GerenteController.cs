@@ -33,13 +33,13 @@ namespace TrabalhoFinal.Controllers
 
         public ActionResult Index()
         {
-            var gerentes = _context.Gerentes.Include(c => c.MembershipType).ToList();
+            var gerentes = _context.Gerentes.ToList();
             return View(gerentes);
         }
 
         public ActionResult Details(int id)
         {
-            var gerente = _context.Gerentes.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
+            var gerente = _context.Gerentes.SingleOrDefault(c => c.Id == id);
 
             if (gerente == null)
                 return HttpNotFound();

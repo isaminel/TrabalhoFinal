@@ -1,4 +1,4 @@
-﻿@model TrabalhoFinal.ViewModels.GerenteIndexViewModel
+﻿@model IEnumerable<TrabalhoFinal.Models.Gerente>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,14 +7,14 @@
 
 <h2>Gerentes</h2>
 
-@if (@Model.Gerentes.Count > 0)
+@if (Model.Any())
 {
     <table class="table table-bordered table-hover">
         <thead>
             <tr><th>Gerentes</th></tr>
         </thead>
         <tbody>
-            @foreach (var gerente in Model.Gerentes)
+            @foreach (var gerente in Model)
             {
                 <tr><td>@Html.ActionLink(@gerente.Nome, "Details", new { gerente.Id })</td></tr>
             }
@@ -23,6 +23,6 @@
 }
 else
 {
-    <p>We don't have any gerentes yet.</p>
+    <p>Nós ainda não temos nenhum gerente.</p>
 }
 

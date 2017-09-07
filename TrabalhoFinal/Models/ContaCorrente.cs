@@ -11,10 +11,5 @@ namespace TrabalhoFinal.Models
         public string Agencia { get; set; }
         public string Titular { get; set; }
         public int NrConta { get; set; }
-
-        public bool IsSubscribedToNewsletter { get; set; }
-
-        public MembershipType MembershipType { get; set; }
-        public byte MembershipTypeId { get; set; }
     }
 }
