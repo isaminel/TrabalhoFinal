@@ -300,6 +300,10 @@
     <Content Include="Views\ContaCorrente\Details.cshtml" />
     <Content Include="Views\Gerente\Details.cshtml" />
     <Content Include="Views\Operacao\Details.cshtml" />
+    <Content Include="Views\Cliente\ClienteForm.cshtml" />
+    <Content Include="Views\ContaCorrente\ContaCorrenteForm.cshtml" />
+    <Content Include="Views\Gerente\GerenteForm.cshtml" />
+    <Content Include="Views\Operacao\OperacaoForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

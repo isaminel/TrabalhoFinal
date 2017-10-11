@@ -47,5 +47,36 @@ namespace TrabalhoFinal.Controllers
             return View(operacao);
         }
 
+        [HttpPost]
+        public ActionResult Save(Operacao operacao)
+        {
+            if (operacao.Id == 0)
+            {
+                
+                _context.Operacoes.Add(operacao);
+            }
+            else
+            {
+                var operacaoInDb = _context.Operacoes.Single(c => c.Id == operacao.Id);
+
+                operacaoInDb.NomeOperacao = operacao.NomeOperacao;
+                operacaoInDb.Valor = operacao.Valor;
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var operacao = _context.Operacoes.SingleOrDefault(c => c.Id == id);
+
+            if (operacao == null)
+                return HttpNotFound();
+
+
+            return View("OperacaoForm", operacao);
+        }
+
     }
 }

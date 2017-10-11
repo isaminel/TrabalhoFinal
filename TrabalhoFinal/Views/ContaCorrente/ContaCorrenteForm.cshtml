@@ -1,0 +1,26 @@
+﻿@model TrabalhoFinal.ViewModels.ContaCorrenteIndexViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "ContasCorrente"))
+{
+    @Html.HiddenFor(m => m.ContaCorrente.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContaCorrente.Agencia)
+        @Html.TextBoxFor(m => m.ContaCorrente.Agencia, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContaCorrente.Titular)
+        @Html.TextBoxFor(m => m.ContaCorrente.Titular, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContaCorrente.NrConta)
+        @Html.TextBoxFor(m => m.ContaCorrente.NrConta, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+}

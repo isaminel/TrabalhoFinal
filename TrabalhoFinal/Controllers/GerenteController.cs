@@ -45,6 +45,38 @@ namespace TrabalhoFinal.Controllers
                 return HttpNotFound();
 
             return View(gerente);
+
+        }
+
+        [HttpPost]
+        public ActionResult Save(Gerente gerente)
+        {
+            if (gerente.Id == 0)
+            {
+                // armazena o cliente em memória
+                _context.Gerentes.Add(gerente);
+            }
+            else
+            {
+                var gerenteInDb = _context.Gerentes.Single(c => c.Id == gerente.Id);
+
+                gerenteInDb.Nome = gerente.Nome;
+                gerenteInDb.Cpf = gerente.Cpf;
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var gerente = _context.Gerentes.SingleOrDefault(c => c.Id == id);
+
+            if (gerente == null)
+                return HttpNotFound();
+
+
+            return View("GerenteForm", gerente);
         }
 
     }

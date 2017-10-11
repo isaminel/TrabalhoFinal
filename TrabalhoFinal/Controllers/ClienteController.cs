@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TrabalhoFinal.Models;
+using TrabalhoFinal.ViewModels;
 
 namespace TrabalhoFinal.Controllers
 {
@@ -38,5 +39,37 @@ namespace TrabalhoFinal.Controllers
 
             return View(cliente);
         }
+
+        [HttpPost] 
+        public ActionResult Save(Cliente cliente) 
+        {
+            if (cliente.Id == 0)
+            {
+                // armazena o cliente em memória
+                _context.Clientes.Add(cliente);
+            }
+            else
+            {
+                var clienteInDb = _context.Clientes.Single(c => c.Id == cliente.Id);
+
+                clienteInDb.Nome = cliente.Nome;
+                clienteInDb.Cpf = cliente.Cpf;
+            }
+
+           _context.SaveChanges();           
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var cliente = _context.Clientes.SingleOrDefault(c => c.Id == id);
+
+            if (cliente == null)
+                return HttpNotFound();
+
+            
+            return View("ClienteForm", cliente);
+        }
+
     }
 }

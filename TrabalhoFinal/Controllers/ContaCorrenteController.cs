@@ -47,5 +47,36 @@ namespace TrabalhoFinal.Controllers
             return View(conta);
         }
 
+        [HttpPost]
+        public ActionResult Save(ContaCorrente conta)
+        {
+            if (conta.Id == 0)
+            {                
+                _context.ContasCorrente.Add(conta);
+            }
+            else
+            {
+                var contaInDb = _context.ContasCorrente.Single(c => c.Id == conta.Id);
+
+                contaInDb.Agencia = conta.Agencia;
+                contaInDb.Titular = conta.Titular;
+                contaInDb.NrConta = conta.NrConta;
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var conta = _context.ContasCorrente.SingleOrDefault(c => c.Id == id);
+
+            if (conta == null)
+                return HttpNotFound();
+
+
+            return View("ContaCorrenteForm", conta);
+        }
+
     }
 }
