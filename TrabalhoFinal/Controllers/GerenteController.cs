@@ -11,13 +11,6 @@ namespace TrabalhoFinal.Controllers
 {
     public class GerenteController : Controller
     {
-        /*public List<Gerente> Gerentes = new List<Gerente>
-        {
-            new Gerente {Nome = "Anderson Frare", Id = 1, Cpf = "757.998.965-10"},
-            new Gerente {Nome = "Thiago Zils", Id = 2, Cpf = "665.989.778-85"}
-        };*/
-
-        // GET: Customers
 
         private ApplicationDbContext _context;
 
@@ -48,12 +41,24 @@ namespace TrabalhoFinal.Controllers
 
         }
 
+        public ActionResult New()
+        {
+            var gerente = new Gerente();
+
+            return View("GerenteForm", gerente);
+        }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Gerente gerente)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("GerenteForm", gerente);
+            }
             if (gerente.Id == 0)
             {
-                // armazena o cliente em memória
+
                 _context.Gerentes.Add(gerente);
             }
             else

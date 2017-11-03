@@ -10,12 +10,17 @@ namespace TrabalhoFinal.Models
     {
         public int Id { get; set; }
 
+        [Required]
+        [StringLength(255)]
         [Display(Name = "Agencia")]
         public string Agencia { get; set; }
 
+        [Required]
+        [StringLength(255)]
         [Display(Name = "Titular")]
         public string Titular { get; set; }
 
+        [Required]
         [Display(Name = "NrConta")]
         public int NrConta { get; set; }
     }

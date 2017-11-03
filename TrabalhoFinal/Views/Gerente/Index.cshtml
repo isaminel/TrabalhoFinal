@@ -4,25 +4,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <h2>Gerentes</h2>
+
+<p>
+    @Html.ActionLink("Novo Gerente", "New", null, new { @class = "btn btn-primary" })
+</p>
 
 @if (Model.Any())
 {
+  
     <table class="table table-bordered table-hover">
         <thead>
-            <tr><th>Gerentes</th></tr>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+            </tr>
         </thead>
         <tbody>
             @foreach (var gerente in Model)
             {
-                <tr><td>@Html.ActionLink(@gerente.Nome, "Details", new { gerente.Id })</td></tr>
+                <tr>
+                    <td>@Html.ActionLink(@gerente.Nome, "Details", new { gerente.Id })</td>
+                    <td>@gerente.Cpf</td>
+                    <td><p>@Html.ActionLink("Editar", "Edit", new { gerente.Id }, new { @class = "btn btn-primary" })</p></td>
+
+                </tr>
             }
         </tbody>
     </table>
+
 }
 else
 {
-    <p>Nós ainda não temos nenhum gerente.</p>
+    <p>Não há nenhum Gerente ainda.</p>
 }
-

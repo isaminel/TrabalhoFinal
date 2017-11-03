@@ -10,9 +10,13 @@ namespace TrabalhoFinal.Models
     {
         public int Id { get; set; }
 
+        [Required]
+        [StringLength(255)]
         [Display(Name = "Nome")]
         public string Nome { get; set; }
 
+        [Required]
+        [StringLength(255)]
         [Display(Name = "Cpf")]
         public string Cpf { get; set; }
     }

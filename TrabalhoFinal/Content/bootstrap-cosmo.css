@@ -8412,3 +8412,7 @@ a.list-group-item-danger.active {
 .popover {
     color: #333333;
 }
+
+.field-validation-error {
+    color: red;
+}

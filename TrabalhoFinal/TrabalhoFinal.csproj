@@ -218,6 +218,30 @@
     <Compile Include="Migrations\201709062351435_Teste.Designer.cs">
       <DependentUpon>201709062351435_Teste.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710172230347_AlteracaoModel.cs" />
+    <Compile Include="Migrations\201710172230347_AlteracaoModel.Designer.cs">
+      <DependentUpon>201710172230347_AlteracaoModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710312119358_ValidationOperacao.cs" />
+    <Compile Include="Migrations\201710312119358_ValidationOperacao.Designer.cs">
+      <DependentUpon>201710312119358_ValidationOperacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710312133211_ValidationCliente.cs" />
+    <Compile Include="Migrations\201710312133211_ValidationCliente.Designer.cs">
+      <DependentUpon>201710312133211_ValidationCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710312201087_ValidationContaCorrente.cs" />
+    <Compile Include="Migrations\201710312201087_ValidationContaCorrente.Designer.cs">
+      <DependentUpon>201710312201087_ValidationContaCorrente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710312206380_ValidationContaCorrente2.cs" />
+    <Compile Include="Migrations\201710312206380_ValidationContaCorrente2.Designer.cs">
+      <DependentUpon>201710312206380_ValidationContaCorrente2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710312225036_ValidationGerente.cs" />
+    <Compile Include="Migrations\201710312225036_ValidationGerente.Designer.cs">
+      <DependentUpon>201710312225036_ValidationGerente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cliente.cs" />
@@ -248,9 +272,23 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\cldr.js" />
+    <Content Include="Scripts\cldr\event.js" />
+    <Content Include="Scripts\cldr\supplemental.js" />
+    <Content Include="Scripts\cldr\unresolved.js" />
+    <Content Include="Scripts\globalize.js" />
+    <Content Include="Scripts\globalize\currency.js" />
+    <Content Include="Scripts\globalize\date.js" />
+    <Content Include="Scripts\globalize\message.js" />
+    <Content Include="Scripts\globalize\number.js" />
+    <Content Include="Scripts\globalize\plural.js" />
+    <Content Include="Scripts\globalize\relative-time.js" />
+    <Content Include="Scripts\globalize\unit.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.globalize.js" />
+    <Content Include="Scripts\jquery.validate.globalize.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -339,6 +377,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709062351435_Teste.resx">
       <DependentUpon>201709062351435_Teste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710172230347_AlteracaoModel.resx">
+      <DependentUpon>201710172230347_AlteracaoModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710312119358_ValidationOperacao.resx">
+      <DependentUpon>201710312119358_ValidationOperacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710312133211_ValidationCliente.resx">
+      <DependentUpon>201710312133211_ValidationCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710312201087_ValidationContaCorrente.resx">
+      <DependentUpon>201710312201087_ValidationContaCorrente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710312206380_ValidationContaCorrente2.resx">
+      <DependentUpon>201710312206380_ValidationContaCorrente2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710312225036_ValidationGerente.resx">
+      <DependentUpon>201710312225036_ValidationGerente.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,24 +1,39 @@
-﻿@model TrabalhoFinal.ViewModels.ClienteIndexViewModel
-
+﻿@model TrabalhoFinal.Models.Cliente
 @{
-    ViewBag.Title = Model.Title;
+    ViewBag.Title = "Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Save", "Clientes"))
+@using (Html.BeginForm("Save", "Cliente"))
 {
-    @Html.HiddenFor(m => m.Cliente.Id)
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(c => c.Id)
+
     <div class="form-group">
-        @Html.LabelFor(m => m.Cliente.Nome)
-        @Html.TextBoxFor(m => m.Cliente.Nome, new { @class = "form-control" })
+        @Html.LabelFor(c => c.Nome)
+        @Html.TextBoxFor(c => c.Nome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Nome)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Cliente.Cpf)
-        @Html.TextBoxFor(m => m.Cliente.Cpf, new { @class = "form-control" })
-    </div>    
-    
+        @Html.LabelFor(c => c.Cpf)
+        @Html.TextBoxFor(c => c.Cpf, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Cpf)
+    </div>
+
     <button type="submit" class="btn btn-primary">Salvar</button>
+
+    @section scripts
+{
+        @Scripts.Render("~/bundles/jqueryval")
+        <script type="text/javascript">
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                Globalize.culture("pt-BR");
+                return this.optional(element) || Globalize.parseDate(value) !== null;
+            }
+        })
+        </script>
 }
-
-
+}

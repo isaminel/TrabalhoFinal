@@ -6,21 +6,36 @@
 
 <h2>Operações</h2>
 
+<p>
+    @Html.ActionLink("Nova Operação", "New", null, new { @class = "btn btn-primary" })
+</p>
+
 @if (Model.Any())
 {
+
     <table class="table table-bordered table-hover">
         <thead>
-            <tr><th>Operações</th></tr>
+            <tr>
+                <th>Nome da operação</th>
+                <th>Valor</th>
+                <th>Conta destino</th>
+            </tr>
         </thead>
         <tbody>
             @foreach (var operacao in Model)
             {
-                <tr><td>@Html.ActionLink(@operacao.NomeOperacao, "Details", new { operacao.Id })</td></tr>
+                <tr>
+                    <td>@Html.ActionLink(@operacao.NomeOperacao, "Details", new { operacao.Id })</td>
+                    <td>@operacao.Valor</td>
+                    <td>@operacao.NrContaDestino</td>
+                    <td><p>@Html.ActionLink("Editar", "Edit", new {operacao.Id}, new {@class = "btn btn-primary" })</p></td>
+                </tr>
             }
         </tbody>
     </table>
+
 }
 else
 {
-    <p>Nós ainda não temos nenhuma operação.</p>
+    <p>Não há nenhuma operação ainda.</p>
 }

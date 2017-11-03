@@ -1,22 +1,38 @@
-﻿@model TrabalhoFinal.ViewModels.GerenteIndexViewModel
-
+﻿@model TrabalhoFinal.Models.Gerente
 @{
-    ViewBag.Title = Model.Title;
+    ViewBag.Title = "Gerente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("Save", "Gerente"))
 {
-    @Html.HiddenFor(m => m.Gerente.Id)
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(g => g.Id)
     <div class="form-group">
-        @Html.LabelFor(m => m.Gerente.Nome)
-        @Html.TextBoxFor(m => m.Gerente.Nome, new { @class = "form-control" })
+        @Html.LabelFor(g => g.Nome)
+        @Html.TextBoxFor(g => g.Nome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(g => g.Nome)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Gerente.Cpf)
-        @Html.TextBoxFor(m => m.Gerente.Cpf, new { @class = "form-control" })
+        @Html.LabelFor(g => g.Cpf)
+        @Html.TextBoxFor(g => g.Cpf, new { @class = "form-control" })
+        @Html.ValidationMessageFor(g => g.Cpf)
     </div>
 
     <button type="submit" class="btn btn-primary">Salvar</button>
+
+    @section scripts
+{
+        @Scripts.Render("~/bundles/jqueryval")
+        <script type="text/javascript">
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                Globalize.culture("pt-BR");
+                return this.optional(element) || Globalize.parseDate(value) !== null;
+            }
+        })
+        </script>
+    }
 }

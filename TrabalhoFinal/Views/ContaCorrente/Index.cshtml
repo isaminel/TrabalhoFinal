@@ -6,23 +6,37 @@
 
 <h2>Contas Corrente</h2>
 
+<p>
+    @Html.ActionLink("Nova Conta Corrente", "New", null, new { @class = "btn btn-primary" })
+</p>
+
 @if (Model.Any())
 {
+
     <table class="table table-bordered table-hover">
         <thead>
-            <tr><th>Contas Corrente</th></tr>
+            <tr>
+                <th>Agência</th>
+                <th>Titular</th>
+                <th>Número da conta</th>
+            </tr>
         </thead>
         <tbody>
             @foreach (var conta in Model)
             {
-                <tr><td>@Html.ActionLink(@conta.Titular, "Details", new { conta.Id })</td></tr>
+                <tr>
+                    <td>@Html.ActionLink(@conta.Agencia, "Details", new { conta.Id })</td>
+                    <td>@conta.Titular</td>
+                    <td>@conta.NrConta</td>
+                    <td><p>@Html.ActionLink("Editar", "Edit", new { conta.Id }, new { @class = "btn btn-primary" })</p></td>
+
+                </tr>
             }
         </tbody>
     </table>
+
 }
 else
 {
-    <p>Nós ainda não temos nenhuma conta.</p>
+    <p>Não há nenhuma Conta Corrente ainda.</p>
 }
-
-

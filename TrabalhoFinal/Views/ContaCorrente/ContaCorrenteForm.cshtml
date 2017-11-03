@@ -1,26 +1,43 @@
-﻿@model TrabalhoFinal.ViewModels.ContaCorrenteIndexViewModel
-
+﻿@model TrabalhoFinal.Models.ContaCorrente
 @{
-    ViewBag.Title = Model.Title;
+    ViewBag.Title = "Conta Corrente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Save", "ContasCorrente"))
+@using (Html.BeginForm("Save", "ContaCorrente"))
 {
-    @Html.HiddenFor(m => m.ContaCorrente.Id)
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(c => c.Id)
     <div class="form-group">
-        @Html.LabelFor(m => m.ContaCorrente.Agencia)
-        @Html.TextBoxFor(m => m.ContaCorrente.Agencia, new { @class = "form-control" })
+        @Html.LabelFor(c => c.Agencia)
+        @Html.TextBoxFor(c => c.Agencia, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Agencia)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.ContaCorrente.Titular)
-        @Html.TextBoxFor(m => m.ContaCorrente.Titular, new { @class = "form-control" })
+        @Html.LabelFor(c => c.Titular)
+        @Html.TextBoxFor(c => c.Titular, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Titular)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.ContaCorrente.NrConta)
-        @Html.TextBoxFor(m => m.ContaCorrente.NrConta, new { @class = "form-control" })
+        @Html.LabelFor(c => c.NrConta)
+        @Html.TextBoxFor(c => c.NrConta, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.NrConta)
     </div>
 
     <button type="submit" class="btn btn-primary">Salvar</button>
+
+    @section scripts
+{
+        @Scripts.Render("~/bundles/jqueryval")
+        <script type="text/javascript">
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                Globalize.culture("pt-BR");
+                return this.optional(element) || Globalize.parseDate(value) !== null;
+            }
+        })
+        </script>
+    }
 }

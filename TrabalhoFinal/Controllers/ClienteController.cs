@@ -40,12 +40,24 @@ namespace TrabalhoFinal.Controllers
             return View(cliente);
         }
 
-        [HttpPost] 
-        public ActionResult Save(Cliente cliente) 
+        public ActionResult New()
         {
+            var cliente = new Cliente();
+
+            return View("ClienteForm", cliente);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Cliente cliente)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("ClienteForm", cliente);
+            }
             if (cliente.Id == 0)
             {
-                // armazena o cliente em memória
+
                 _context.Clientes.Add(cliente);
             }
             else
@@ -56,7 +68,7 @@ namespace TrabalhoFinal.Controllers
                 clienteInDb.Cpf = cliente.Cpf;
             }
 
-           _context.SaveChanges();           
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
 

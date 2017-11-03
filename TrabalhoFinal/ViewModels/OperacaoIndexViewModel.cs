@@ -6,9 +6,7 @@ using TrabalhoFinal.Models;
 
 namespace TrabalhoFinal.ViewModels
 {
-    public class OperacaoIndexViewModel
-    {
-        public List<Operacao> Operacoes { get; set; }
+    public class OperacaoIndexViewModel    {        
 
         public Operacao Operacao { get; set; }
         public string Title

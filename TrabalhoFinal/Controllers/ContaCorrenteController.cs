@@ -11,14 +11,6 @@ namespace TrabalhoFinal.Controllers
 {
     public class ContaCorrenteController : Controller
     {
-        /*public List<ContaCorrente> ContasCorrente = new List<ContaCorrente>
-        {
-            new ContaCorrente {Agencia = "Bradesco", Id = 1, Titular = "Julia Nascimento", NrConta = 35556},
-            new ContaCorrente {Agencia = "Caixa", Id = 2, Titular = "Camila Maas", NrConta = 85870}
-        };*/
-
-        // GET: Customers
-
         private ApplicationDbContext _context;
 
         public ContaCorrenteController()
@@ -47,11 +39,24 @@ namespace TrabalhoFinal.Controllers
             return View(conta);
         }
 
+        public ActionResult New()
+        {
+            var conta = new ContaCorrente();
+
+            return View("ContaCorrenteForm", conta);
+        }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(ContaCorrente conta)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("ContaCorrenteForm", conta);
+            }
             if (conta.Id == 0)
-            {                
+            {
+
                 _context.ContasCorrente.Add(conta);
             }
             else
