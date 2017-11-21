@@ -83,5 +83,19 @@ namespace TrabalhoFinal.Controllers
             return View("ContaCorrenteForm", conta);
         }
 
+        public ActionResult Delete(int id)
+        {
+            var customer = _context.ContasCorrente.SingleOrDefault(c => c.Id == id);
+
+            if (customer == null)
+                return HttpNotFound();
+
+            _context.ContasCorrente.Remove(customer);
+            _context.SaveChanges();
+
+            return new HttpStatusCodeResult(200);
+        }
     }
 }
+
+    

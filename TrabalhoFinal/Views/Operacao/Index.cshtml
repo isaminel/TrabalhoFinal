@@ -29,6 +29,7 @@
                     <td>@operacao.Valor</td>
                     <td>@operacao.NrContaDestino</td>
                     <td><p>@Html.ActionLink("Editar", "Edit", new {operacao.Id}, new {@class = "btn btn-primary" })</p></td>
+                    <td><button data-cliente-id="@operacao.Id" class="btn-link js-delete">Remover</button></td>
                 </tr>
             }
         </tbody>
@@ -38,4 +39,28 @@
 else
 {
     <p>Não há nenhuma operação ainda.</p>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#clientes").on("click",".js-delete",
+                function () {
+                    var button = $(this);
+                    bootbox.confirm("Tem certeza que quer remover este cliente?",
+                        function(result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/clientes/delete/" + button.attr("data-cliente-id"),
+                                    method: "GET",
+                                    success: function() {
+                                        button.parents("tr").remove();
+                                    }
+                                });
+                            }
+                        });
+                });
+        });
+    </script>
 }

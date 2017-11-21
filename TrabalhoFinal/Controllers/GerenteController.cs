@@ -84,5 +84,19 @@ namespace TrabalhoFinal.Controllers
             return View("GerenteForm", gerente);
         }
 
+        public ActionResult Delete(int id)
+        {
+            var customer = _context.Gerentes.SingleOrDefault(c => c.Id == id);
+
+            if (customer == null)
+                return HttpNotFound();
+
+            _context.Gerentes.Remove(customer);
+            _context.SaveChanges();
+
+            return new HttpStatusCodeResult(200);
+        }
     }
 }
+
+  

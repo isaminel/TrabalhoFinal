@@ -13,7 +13,7 @@
 @if (Model.Any())
 {
 
-    <table class="table table-bordered table-hover">
+    <table id="clientes" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Nome</th>
@@ -27,7 +27,8 @@
                     <td>@Html.ActionLink(@cliente.Nome, "Details", new { cliente.Id })</td>
                     <td>@cliente.Cpf</td>
                     <td><p>@Html.ActionLink("Editar", "Edit", new { cliente.Id }, new { @class = "btn btn-primary" })</p></td>
-
+                 
+                    <td><button data-cliente-id="@cliente.Id" class="btn-link js-delete">Remover</button></td>
                 </tr>
             }
         </tbody>
@@ -37,4 +38,28 @@
 else
 {
     <p>Não há nenhum cliente ainda.</p>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#clientes").on("click",".js-delete",
+                function () {
+                    var button = $(this);
+                    bootbox.confirm("Tem certeza que quer remover este cliente?",
+                        function(result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/clientes/delete/" + button.attr("data-cliente-id"),
+                                    method: "GET",
+                                    success: function() {
+                                        button.parents("tr").remove();
+                                    }
+                                });
+                            }
+                        });
+                });
+        });
+    </script>
 }

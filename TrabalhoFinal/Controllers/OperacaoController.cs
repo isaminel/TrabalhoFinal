@@ -83,5 +83,19 @@ namespace TrabalhoFinal.Controllers
             return View("OperacaoForm", operacao);
         }
 
+        public ActionResult Delete(int id)
+        {
+            var customer = _context.Operacoes.SingleOrDefault(c => c.Id == id);
+
+            if (customer == null)
+                return HttpNotFound();
+
+            _context.Operacoes.Remove(customer);
+            _context.SaveChanges();
+
+            return new HttpStatusCodeResult(200);
+        }
     }
 }
+
+    
