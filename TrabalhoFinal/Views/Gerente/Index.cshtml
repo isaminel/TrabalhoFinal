@@ -12,8 +12,8 @@
 
 @if (Model.Any())
 {
-  
-    <table class="table table-bordered table-hover">
+
+    <table id="gerente" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Nome</th>
@@ -27,7 +27,7 @@
                     <td>@Html.ActionLink(@gerente.Nome, "Details", new { gerente.Id })</td>
                     <td>@gerente.Cpf</td>
                     <td><p>@Html.ActionLink("Editar", "Edit", new { gerente.Id }, new { @class = "btn btn-primary" })</p></td>
-                    <td><button data-cliente-id="@gerente.Id" class="btn-link js-delete">Remover</button></td>
+                    <td><button data-gerente-id="@gerente.Id" class="btn-link js-delete">Remover</button></td>
                 </tr>
             }
         </tbody>
@@ -43,14 +43,14 @@ else
 {
     <script>
         $(document).ready(function() {
-            $("#clientes").on("click",".js-delete",
+            $("#gerente").on("click",".js-delete",
                 function () {
                     var button = $(this);
-                    bootbox.confirm("Tem certeza que quer remover este cliente?",
+                    bootbox.confirm("Tem certeza que quer remover este gerente?",
                         function(result) {
                             if (result) {
                                 $.ajax({
-                                    url: "/clientes/delete/" + button.attr("data-cliente-id"),
+                                    url: "/gerente/delete/" + button.attr("data-gerente-id"),
                                     method: "GET",
                                     success: function() {
                                         button.parents("tr").remove();

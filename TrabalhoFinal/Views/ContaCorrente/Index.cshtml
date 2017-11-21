@@ -13,7 +13,7 @@
 @if (Model.Any())
 {
 
-    <table class="table table-bordered table-hover">
+    <table id="conta" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Agência</th>
@@ -29,7 +29,7 @@
                     <td>@conta.Titular</td>
                     <td>@conta.NrConta</td>
                     <td><p>@Html.ActionLink("Editar", "Edit", new { conta.Id }, new { @class = "btn btn-primary" })</p></td>
-                    <td><button data-cliente-id="@conta.Id" class="btn-link js-delete">Remover</button></td>
+                    <td><button data-conta-id="@conta.Id" class="btn-link js-delete">Remover</button></td>
                 </tr>
             }
         </tbody>
@@ -45,14 +45,14 @@ else
 {
     <script>
         $(document).ready(function() {
-            $("#clientes").on("click",".js-delete",
+            $("#conta").on("click",".js-delete",
                 function () {
                     var button = $(this);
-                    bootbox.confirm("Tem certeza que quer remover este cliente?",
+                    bootbox.confirm("Tem certeza que quer remover esta conta?",
                         function(result) {
                             if (result) {
                                 $.ajax({
-                                    url: "/clientes/delete/" + button.attr("data-cliente-id"),
+                                    url: "/contacorrente/delete/" + button.attr("data-conta-id"),
                                     method: "GET",
                                     success: function() {
                                         button.parents("tr").remove();

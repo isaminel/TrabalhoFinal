@@ -13,7 +13,7 @@
 @if (Model.Any())
 {
 
-    <table id="clientes" class="table table-bordered table-hover">
+    <table id="cliente" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Nome</th>
@@ -44,14 +44,14 @@ else
 {
     <script>
         $(document).ready(function() {
-            $("#clientes").on("click",".js-delete",
+            $("#cliente").on("click",".js-delete",
                 function () {
                     var button = $(this);
                     bootbox.confirm("Tem certeza que quer remover este cliente?",
                         function(result) {
                             if (result) {
                                 $.ajax({
-                                    url: "/clientes/delete/" + button.attr("data-cliente-id"),
+                                    url: "/cliente/delete/" + button.attr("data-cliente-id"),
                                     method: "GET",
                                     success: function() {
                                         button.parents("tr").remove();
