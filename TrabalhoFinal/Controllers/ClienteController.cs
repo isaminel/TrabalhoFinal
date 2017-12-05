@@ -24,7 +24,6 @@ namespace TrabalhoFinal.Controllers
         }
 
         // GET: Customers
-        [AllowAnonymous]
         public ActionResult Index()
         {
             var cliente = _context.Clientes.ToList();

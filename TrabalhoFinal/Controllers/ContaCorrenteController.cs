@@ -23,7 +23,7 @@ namespace TrabalhoFinal.Controllers
             _context.Dispose();
         }
 
-        [AllowAnonymous]
+
         public ActionResult Index()
         {
             var contas = _context.ContasCorrente.ToList();

@@ -24,7 +24,7 @@ namespace TrabalhoFinal.Controllers
             _context.Dispose();
         }
 
-        [AllowAnonymous]
+        
         public ActionResult Index()
         {
             var operacoes = _context.Operacoes.ToList();
