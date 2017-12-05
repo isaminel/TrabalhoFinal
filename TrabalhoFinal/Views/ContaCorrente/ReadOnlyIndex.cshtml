@@ -1,0 +1,36 @@
+﻿@model IEnumerable<TrabalhoFinal.Models.ContaCorrente>
+@{
+    ViewBag.Title = "ReadOnlyIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Conta Corrente - Read Only</h2>
+
+@if (Model.Any())
+{
+
+    <table id="conta" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Agência</th>
+                <th>Titular</th>
+                <th>Número da conta</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var conta in Model)
+            {
+                <tr>
+                    <td>@conta.Agencia</td>
+                    <td>@conta.Titular</td>
+                    <td>@conta.NrConta</td>                  
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <p>Não há nenhuma Conta Corrente ainda.</p>
+}

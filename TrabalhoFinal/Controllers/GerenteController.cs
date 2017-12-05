@@ -24,10 +24,13 @@ namespace TrabalhoFinal.Controllers
             _context.Dispose();
         }
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var gerentes = _context.Gerentes.ToList();
-            return View(gerentes);
+            if (User.IsInRole(RoleName.CanManageCustomers))
+                return View(gerentes);
+            return View("ReadOnlyIndex", gerentes);
         }
 
         public ActionResult Details(int id)
@@ -38,8 +41,9 @@ namespace TrabalhoFinal.Controllers
                 return HttpNotFound();
 
             return View(gerente);
-
         }
+
+        [Authorize(Roles = RoleName.CanManageCustomers)]
 
         public ActionResult New()
         {
@@ -50,6 +54,7 @@ namespace TrabalhoFinal.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageCustomers)]
         public ActionResult Save(Gerente gerente)
         {
             if (!ModelState.IsValid)
@@ -73,6 +78,7 @@ namespace TrabalhoFinal.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = RoleName.CanManageCustomers)]
         public ActionResult Edit(int id)
         {
             var gerente = _context.Gerentes.SingleOrDefault(c => c.Id == id);
@@ -84,14 +90,17 @@ namespace TrabalhoFinal.Controllers
             return View("GerenteForm", gerente);
         }
 
+
+
+        [Authorize(Roles = RoleName.CanManageCustomers)]
         public ActionResult Delete(int id)
         {
-            var customer = _context.Gerentes.SingleOrDefault(c => c.Id == id);
+            var gerente = _context.Gerentes.SingleOrDefault(c => c.Id == id);
 
-            if (customer == null)
+            if (gerente == null)
                 return HttpNotFound();
 
-            _context.Gerentes.Remove(customer);
+            _context.Gerentes.Remove(gerente);
             _context.SaveChanges();
 
             return new HttpStatusCodeResult(200);

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TrabalhoFinal.Models.Gerente>
+@{
+    ViewBag.Title = "ReadOnlyIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Gerente - Read Only</h2>
+
+@if (Model.Any())
+{
+
+    <table id="gerente" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var gerente in Model)
+            {
+                <tr>
+                    <td>@gerente.Nome</td>
+                    <td>@gerente.Cpf</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <p>Não há nenhum Gerente ainda.</p>
+}
+

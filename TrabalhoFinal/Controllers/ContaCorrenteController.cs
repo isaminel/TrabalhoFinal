@@ -23,21 +23,26 @@ namespace TrabalhoFinal.Controllers
             _context.Dispose();
         }
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var contas = _context.ContasCorrente.ToList();
-            return View(contas);
+            if (User.IsInRole(RoleName.CanManageCustomers))
+                return View(contas);
+            return View("ReadOnlyIndex", contas);
         }
 
         public ActionResult Details(int id)
         {
-            var conta = _context.ContasCorrente.SingleOrDefault(c => c.Id == id);
+            var contas = _context.ContasCorrente.SingleOrDefault(c => c.Id == id);
 
-            if (conta == null)
+            if (contas == null)
                 return HttpNotFound();
 
-            return View(conta);
+            return View(contas);
         }
+
+        [Authorize(Roles = RoleName.CanManageCustomers)]
 
         public ActionResult New()
         {
@@ -48,6 +53,7 @@ namespace TrabalhoFinal.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageCustomers)]
         public ActionResult Save(ContaCorrente conta)
         {
             if (!ModelState.IsValid)
@@ -72,6 +78,7 @@ namespace TrabalhoFinal.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = RoleName.CanManageCustomers)]
         public ActionResult Edit(int id)
         {
             var conta = _context.ContasCorrente.SingleOrDefault(c => c.Id == id);
@@ -83,14 +90,15 @@ namespace TrabalhoFinal.Controllers
             return View("ContaCorrenteForm", conta);
         }
 
+        [Authorize(Roles = RoleName.CanManageCustomers)]
         public ActionResult Delete(int id)
         {
-            var customer = _context.ContasCorrente.SingleOrDefault(c => c.Id == id);
+            var conta = _context.ContasCorrente.SingleOrDefault(c => c.Id == id);
 
-            if (customer == null)
+            if (conta == null)
                 return HttpNotFound();
 
-            _context.ContasCorrente.Remove(customer);
+            _context.ContasCorrente.Remove(conta);
             _context.SaveChanges();
 
             return new HttpStatusCodeResult(200);

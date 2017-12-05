@@ -24,10 +24,22 @@ namespace TrabalhoFinal.Controllers
             _context.Dispose();
         }
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var operacoes = _context.Operacoes.ToList();
-            return View(operacoes);
+            if (User.IsInRole(RoleName.CanManageCustomers))
+                return View(operacoes);
+            return View("ReadOnlyIndex", operacoes);
+        }
+
+        [Authorize(Roles = RoleName.CanManageCustomers)]
+
+        public ActionResult New()
+        {
+            var operacao = new Operacao();
+
+            return View("OperacaoForm", operacao);
         }
 
         public ActionResult Details(int id)
@@ -40,15 +52,9 @@ namespace TrabalhoFinal.Controllers
             return View(operacao);
         }
 
-        public ActionResult New()
-        {
-            var operacao = new Operacao();
-
-            return View("OperacaoForm", operacao);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageCustomers)]
         public ActionResult Save(Operacao operacao)
         {
             if (!ModelState.IsValid)
@@ -72,6 +78,7 @@ namespace TrabalhoFinal.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = RoleName.CanManageCustomers)]
         public ActionResult Edit(int id)
         {
             var operacao = _context.Operacoes.SingleOrDefault(c => c.Id == id);
@@ -83,14 +90,15 @@ namespace TrabalhoFinal.Controllers
             return View("OperacaoForm", operacao);
         }
 
+        [Authorize(Roles = RoleName.CanManageCustomers)]
         public ActionResult Delete(int id)
         {
-            var customer = _context.Operacoes.SingleOrDefault(c => c.Id == id);
+            var operacao = _context.Operacoes.SingleOrDefault(c => c.Id == id);
 
-            if (customer == null)
+            if (operacao == null)
                 return HttpNotFound();
 
-            _context.Operacoes.Remove(customer);
+            _context.Operacoes.Remove(operacao);
             _context.SaveChanges();
 
             return new HttpStatusCodeResult(200);

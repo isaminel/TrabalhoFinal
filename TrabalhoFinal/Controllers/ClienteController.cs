@@ -24,10 +24,13 @@ namespace TrabalhoFinal.Controllers
         }
 
         // GET: Customers
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var cliente = _context.Clientes.ToList();
-            return View(cliente);
+            if (User.IsInRole(RoleName.CanManageCustomers))
+                return View(cliente);
+            return View("ReadOnlyIndex", cliente);
         }
 
         public ActionResult Details(int id)
@@ -40,6 +43,8 @@ namespace TrabalhoFinal.Controllers
             return View(cliente);
         }
 
+        [Authorize(Roles = RoleName.CanManageCustomers)]               
+
         public ActionResult New()
         {
             var cliente = new Cliente();
@@ -49,6 +54,7 @@ namespace TrabalhoFinal.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageCustomers)]
         public ActionResult Save(Cliente cliente)
         {
             if (!ModelState.IsValid)
@@ -72,6 +78,7 @@ namespace TrabalhoFinal.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = RoleName.CanManageCustomers)]
         public ActionResult Edit(int id)
         {
             var cliente = _context.Clientes.SingleOrDefault(c => c.Id == id);
@@ -83,14 +90,15 @@ namespace TrabalhoFinal.Controllers
             return View("ClienteForm", cliente);
         }
 
+        [Authorize(Roles = RoleName.CanManageCustomers)]
         public ActionResult Delete(int id)
         {
-            var customer = _context.Clientes.SingleOrDefault(c => c.Id == id);
+            var cliente = _context.Clientes.SingleOrDefault(c => c.Id == id);
 
-            if (customer == null)
+            if (cliente == null)
                 return HttpNotFound();
 
-            _context.Clientes.Remove(customer);
+            _context.Clientes.Remove(cliente);
             _context.SaveChanges();
 
             return new HttpStatusCodeResult(200);

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<TrabalhoFinal.Models.Operacao>
+@{
+    ViewBag.Title = "ReadOnlyIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Operação - Read Only</h2>
+
+@if (Model.Any())
+{
+
+    <table id="operacao" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Nome da operação</th>
+                <th>Valor</th>
+                <th>Conta destino</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var operacao in Model)
+            {
+                <tr>
+                    <td>@operacao.NomeOperacao</td>
+                    <td>@operacao.Valor</td>
+                    <td>@operacao.NrContaDestino</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <p>Não há nenhuma operação ainda.</p>
+}
+
+

@@ -243,6 +243,10 @@
     <Compile Include="Migrations\201710312225036_ValidationGerente.Designer.cs">
       <DependentUpon>201710312225036_ValidationGerente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711282209178_Inserts.cs" />
+    <Compile Include="Migrations\201711282209178_Inserts.Designer.cs">
+      <DependentUpon>201711282209178_Inserts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cliente.cs" />
@@ -251,6 +255,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Operacao.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ClienteIndexViewModel.cs" />
@@ -347,6 +352,10 @@
     <Content Include="Views\ContaCorrente\ContaCorrenteForm.cshtml" />
     <Content Include="Views\Gerente\GerenteForm.cshtml" />
     <Content Include="Views\Operacao\OperacaoForm.cshtml" />
+    <Content Include="Views\Cliente\ReadOnlyIndex.cshtml" />
+    <Content Include="Views\ContaCorrente\ReadOnlyIndex.cshtml" />
+    <Content Include="Views\Gerente\ReadOnlyIndex.cshtml" />
+    <Content Include="Views\Operacao\ReadOnlyIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -400,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710312225036_ValidationGerente.resx">
       <DependentUpon>201710312225036_ValidationGerente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711282209178_Inserts.resx">
+      <DependentUpon>201711282209178_Inserts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
